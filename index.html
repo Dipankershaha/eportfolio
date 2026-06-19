@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dipanker Shaha &mdash; Professional E-Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F3;
+    --paper-raised:#FFFFFF;
+    --ink:#1A1A1A;
+    --ink-soft:#4A4640;
+    --pine:#2B5F4C; --pine-light:#E3ECE6;
+    --rust:#B8472E; --rust-light:#F5E4DD;
+    --gold:#A6790C; --gold-light:#F5EAD3;
+    --plum:#6B3F6E; --plum-light:#EEE3EF;
+    --teal:#1C6E72; --teal-light:#E0EEEE;
+    --grey:#6B6456;
+    --tape:#EFE7CE;
+    --line:#DAD3C2;
+    --maxw:980px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Space Grotesk',sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;}
+  h1,h2,h3,h4{font-family:'Newsreader',serif;color:var(--ink);margin:0 0 0.4em 0;font-weight:600;letter-spacing:-0.01em;}
+  a{color:var(--teal);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  p{margin:0 0 1.1em 0;max-width:700px;}
+  button{font-family:inherit;}
+  ::selection{background:var(--tape);}
+
+  .spine{position:fixed;top:0;left:0;height:3px;background:var(--ink);z-index:100;width:0%;}
+
+  .topnav{position:sticky;top:0;z-index:50;background:rgba(250,248,243,0.96);backdrop-filter:blur(6px);border-bottom:2px solid var(--ink);}
+  .topnav-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;padding:0 24px;overflow-x:auto;scrollbar-width:none;}
+  .topnav-inner::-webkit-scrollbar{display:none;}
+  .nav-brand{font-family:'Newsreader',serif;font-weight:600;font-size:1rem;padding:14px 16px 14px 0;white-space:nowrap;flex-shrink:0;border-right:1px solid var(--line);margin-right:8px;}
+  .tab{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--grey);padding:14px 11px;white-space:nowrap;text-decoration:none;border-bottom:3px solid transparent;flex-shrink:0;cursor:pointer;transition:color .15s,border-color .15s;}
+  .tab:hover{color:var(--ink);}
+  .tab.active{color:var(--ink);border-bottom-color:var(--rust);font-weight:500;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  /* Hero */
+  .hero{padding:60px 0 40px;border-bottom:3px solid var(--ink);position:relative;}
+  .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+  .hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--rust);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:14px;display:block;}
+  .hero h1{font-size:2.5rem;line-height:1.08;max-width:680px;margin-bottom:8px;}
+  .hero .role{font-family:'Newsreader',serif;font-style:italic;font-size:1.2rem;color:var(--teal);margin-bottom:18px;}
+  .hero .lede{font-size:1.02rem;color:var(--ink-soft);max-width:620px;}
+  .domain-key{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+  .domain-pill{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;padding:5px 11px;border-radius:100px;border:1px solid;white-space:nowrap;}
+  .meta-strip{display:flex;gap:30px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line);}
+  .meta-strip div{font-size:0.8rem;color:var(--grey);}
+  .meta-strip strong{display:block;color:var(--ink);font-weight:500;font-size:0.92rem;font-family:'Newsreader',serif;}
+
+  .section{padding:50px 0;border-bottom:1px solid var(--line);scroll-margin-top:58px;}
+  .section-kicker{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--teal);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;display:block;}
+  .section h2{font-size:1.8rem;margin-bottom:12px;}
+  .section .intro{color:var(--ink-soft);max-width:680px;}
+
+  .filter-bar{display:flex;gap:7px;flex-wrap:wrap;margin:24px 0 6px 0;}
+  .filter-chip{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;border:1.5px solid var(--ink);background:var(--paper-raised);color:var(--ink);padding:6px 13px;border-radius:100px;cursor:pointer;transition:all .15s;user-select:none;}
+  .filter-chip:hover{background:var(--tape);}
+  .filter-chip.active{background:var(--ink);color:var(--paper);}
+  .filter-chip[data-filter="std-1"]{border-color:var(--teal);color:var(--teal);}
+  .filter-chip[data-filter="std-2"]{border-color:var(--pine);color:var(--pine);}
+  .filter-chip[data-filter="std-3"]{border-color:var(--gold);color:var(--gold);}
+  .filter-chip[data-filter="std-4"]{border-color:var(--rust);color:var(--rust);}
+  .filter-chip[data-filter="std-5"]{border-color:var(--gold);color:var(--gold);}
+  .filter-chip[data-filter="std-6"]{border-color:var(--plum);color:var(--plum);}
+  .filter-chip[data-filter="std-7"]{border-color:var(--plum);color:var(--plum);}
+  .filter-chip[data-filter="std-1"].active{background:var(--teal);color:#fff;}
+  .filter-chip[data-filter="std-2"].active{background:var(--pine);color:#fff;}
+  .filter-chip[data-filter="std-3"].active{background:var(--gold);color:#fff;}
+  .filter-chip[data-filter="std-4"].active{background:var(--rust);color:#fff;}
+  .filter-chip[data-filter="std-5"].active{background:var(--gold);color:#fff;}
+  .filter-chip[data-filter="std-6"].active{background:var(--plum);color:#fff;}
+  .filter-chip[data-filter="std-7"].active{background:var(--plum);color:#fff;}
+  .filter-hint{font-size:0.78rem;color:var(--grey);margin:10px 0 22px 0;}
+
+  .goal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:22px;}
+  .goal-card{background:var(--paper-raised);border:1px solid var(--line);border-radius:3px;padding:18px 20px;position:relative;}
+  .goal-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--pine);}
+  .goal-card[data-accent="rust"]::before{background:var(--rust);} .goal-card[data-accent="gold"]::before{background:var(--gold);}
+  .goal-card[data-accent="plum"]::before{background:var(--plum);} .goal-card[data-accent="teal"]::before{background:var(--teal);}
+  .goal-card[data-accent="pine"] .goal-tag{color:var(--pine);} .goal-card[data-accent="rust"] .goal-tag{color:var(--rust);}
+  .goal-card[data-accent="gold"] .goal-tag{color:var(--gold);} .goal-card[data-accent="plum"] .goal-tag{color:var(--plum);}
+  .goal-card[data-accent="teal"] .goal-tag{color:var(--teal);}
+  .goal-tag{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;display:block;margin-bottom:7px;}
+  .goal-card h3{font-size:1rem;margin-bottom:6px;font-family:'Newsreader',serif;}
+  .goal-card p{font-size:0.88rem;color:var(--ink-soft);margin:0;}
+
+  /* Standard blocks */
+  .std-block{margin-bottom:64px;scroll-margin-top:58px;position:relative;}
+  .std-watermark{position:absolute;top:-2px;right:0;font-family:'Newsreader',serif;font-weight:600;font-size:5rem;color:var(--ink);opacity:0.05;line-height:1;pointer-events:none;user-select:none;z-index:0;}
+  .std-header{position:relative;z-index:1;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:6px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .std-num-chip{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;background:var(--ink);color:var(--paper);padding:5px 10px;border-radius:2px;}
+  .std-header h2{font-size:1.4rem;margin:0;}
+  .std-focus{font-size:0.86rem;color:var(--grey);margin-top:8px;max-width:680px;position:relative;z-index:1;}
+  .std-block[data-accent="teal"] .std-num-chip{background:var(--teal);} .std-block[data-accent="pine"] .std-num-chip{background:var(--pine);}
+  .std-block[data-accent="gold"] .std-num-chip{background:var(--gold);} .std-block[data-accent="rust"] .std-num-chip{background:var(--rust);}
+  .std-block[data-accent="plum"] .std-num-chip{background:var(--plum);}
+
+  /* Studio = artefact unit, branded like a real tool */
+  .studio{background:var(--paper-raised);border:1px solid var(--line);border-radius:6px;margin:22px 0;overflow:hidden;position:relative;z-index:1;}
+  .studio-band{height:5px;}
+  .std-block[data-accent="teal"] .studio-band{background:var(--teal);} .std-block[data-accent="pine"] .studio-band{background:var(--pine);}
+  .std-block[data-accent="gold"] .studio-band{background:var(--gold);} .std-block[data-accent="rust"] .studio-band{background:var(--rust);}
+  .std-block[data-accent="plum"] .studio-band{background:var(--plum);}
+  .studio-head{display:flex;align-items:center;justify-content:space-between;padding:18px 24px 14px;gap:16px;cursor:pointer;}
+  .studio-head:hover{background:#FCFBF8;}
+  .studio-name{font-family:'Newsreader',serif;font-size:1.3rem;font-weight:700;}
+  .studio-tagline{font-size:0.84rem;color:var(--grey);margin-top:2px;}
+  .chevron{flex-shrink:0;width:18px;height:18px;color:var(--grey);transition:transform .2s;}
+  .studio.open .chevron{transform:rotate(180deg);}
+  .studio-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .studio.open .studio-body{max-height:4000px;}
+  .studio-inner{padding:4px 24px 26px;}
+  .std-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+  .std-pill{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;padding:3px 9px;border-radius:100px;}
+  .std-block[data-accent="teal"] .std-pill{background:var(--teal-light);color:var(--teal);} .std-block[data-accent="pine"] .std-pill{background:var(--pine-light);color:var(--pine);}
+  .std-block[data-accent="gold"] .std-pill{background:var(--gold-light);color:var(--gold);} .std-block[data-accent="rust"] .std-pill{background:var(--rust-light);color:var(--rust);}
+  .std-block[data-accent="plum"] .std-pill{background:var(--plum-light);color:var(--plum);}
+
+  .studio-inner h4{font-family:'Space Grotesk',sans-serif;font-size:0.73rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink);margin:20px 0 7px 0;font-weight:600;border-bottom:1px solid var(--line);padding-bottom:5px;}
+  .studio-inner p{font-size:0.94rem;}
+  .inline-std{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:0.86rem;}
+  .std-block[data-accent="teal"] .inline-std{color:var(--teal);} .std-block[data-accent="pine"] .inline-std{color:var(--pine);}
+  .std-block[data-accent="gold"] .inline-std{color:var(--gold);} .std-block[data-accent="rust"] .inline-std{color:var(--rust);}
+  .std-block[data-accent="plum"] .inline-std{color:var(--plum);}
+
+  /* Interactive widget shell */
+  .widget{background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;padding:20px;margin:14px 0 20px;}
+  .widget-label{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--grey);margin-bottom:12px;}
+</style>
+</head>
+<body>
+<div class="spine" id="spine"></div>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="nav-brand">Dipanker Shaha</span>
+    <a class="tab" data-target="home">Home</a>
+    <a class="tab" data-target="rationale">Rationale</a>
+    <a class="tab" data-target="goals">Goals</a>
+    <a class="tab" data-target="standard-1">1 &middot; Word Wall</a>
+    <a class="tab" data-target="standard-2">2 &middot; Log Lab</a>
+    <a class="tab" data-target="standard-3">3 &middot; Interest Calc</a>
+    <a class="tab" data-target="standard-4">4 &middot; Pace Check</a>
+    <a class="tab" data-target="standard-5">5 &middot; Dice Pool</a>
+    <a class="tab" data-target="standard-6">6 &middot; Watch &amp; Note</a>
+    <a class="tab" data-target="standard-7">7 &middot; Mentor Log</a>
+    <a class="tab" data-target="reflection">Reflection</a>
+    <a class="tab" data-target="references">References</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="hero" id="home">
+    <div class="hero-top">
+      <div>
+        <span class="hero-kicker">CRS514 &middot; Assessment 3 &middot; E-Portfolio</span>
+        <h1>Dipanker Shaha</h1>
+        <p class="role">Mathematics teacher, building towards Stage 6.</p>
+        <p class="lede">Seven tools and strategies from my placement and coursework, each one mapped to a Graduate Standard, each one something I&rsquo;d actually use again.</p>
+      </div>
+    </div>
+    <div class="domain-key">
+      <span class="domain-pill" style="border-color:var(--teal);color:var(--teal);">Professional Knowledge &middot; 1&ndash;2</span>
+      <span class="domain-pill" style="border-color:var(--gold);color:var(--gold);">Professional Practice &middot; 3&ndash;5</span>
+      <span class="domain-pill" style="border-color:var(--plum);color:var(--plum);">Professional Engagement &middot; 6&ndash;7</span>
+    </div>
+    <div class="meta-strip">
+      <div><strong>Master of Teaching (Secondary)</strong>Mathematics &amp; Computing Technology</div>
+      <div><strong>Merrylands High School</strong>Professional Experience placement</div>
+      <div><strong>7 tools, 7 standards</strong>Click any to open</div>
+    </div>
+  </section>
+
+  <section class="section" id="rationale">
+    <span class="section-kicker">Rationale</span>
+    <h2>Why these, why this order</h2>
+    <p>I created this based on the seven Graduate Standards, not a compilation of resources, because a collection of worksheets isn't of much value alone. It's what each tool actually does in a classroom and the standards provide a shape which will bear examination.</p>
+    <p>The main placement I did was Stage 4 and Stage 5 – a class of Year 7 students with a number of EAL/D students. I learned more about scaffolding language and sequencing content in that class than in any other class this year and those are the very things that Stage 6 requires when content is increased in difficulty and there is less room for error. Some of these are directly from that placement. This was a couple I created for this portfolio, because I didn't want you to take the transfer on faith, I wanted to have some real evidence of planning at the Stage 6 level.</p>
+    <p>All of the following are handouts I would give a head of department on day one, not a coursework assignment. Tap on each of them to open.
+    </p>
+  </section>
+
+  <section class="section" id="goals">
+    <span class="section-kicker">Learning goals</span>
+    <h2>Five goals guiding this portfolio</h2>
+    <p class="intro">Specific, measurable, related to Stage 6 syllabus and to the Graduate Standards. They are referred to again in the evidence below.</p>
+    <div class="goal-grid">
+      <div class="goal-card" data-accent="pine">
+        <span class="goal-tag">GOAL 1 &middot; STANDARD 2.1</span>
+        <h3>Content knowledge</h3>
+        <p>Consolidate further their understanding of senior content, functions, exponentials and logs, statistics, so that I can design a sequence of Stage 6 studies based on this material without relying on the syllabus in the textbook for each step.</p>
+      </div>
+      <div class="goal-card" data-accent="teal">
+        <span class="goal-tag">GOAL 2 &middot; STANDARDS 1.5, 3.3</span>
+        <h3>Pedagogy &amp; differentiation</h3>
+        <p>Continue to embed and maintain strategies that are effective with EAL/D students and other students who require additional scaffolding to help them in the lesson, rather than “bolstered” onto the end.</p>
+      </div>
+      <div class="goal-card" data-accent="gold">
+        <span class="goal-tag">GOAL 3 &middot; STANDARDS 5.1, 6.1</span>
+        <h3>Assessment &amp; reflection</h3>
+        <p>Identify areas of difficulty during the lesson and become more adept at capturing what went well so that I can next time.</p>
+      </div>
+      <div class="goal-card" data-accent="plum">
+        <span class="goal-tag">GOAL 4 &middot; STANDARDS 1.1, 4.1, 7.3</span>
+        <h3>Standards alignment</h3>
+        <p>Make the Graduate Standards part of my day-to-day planning and practice, not items I review at the conclusion of placement.</p>
+      </div>
+      <div class="goal-card" data-accent="rust">
+        <span class="goal-tag">GOAL 5 &middot; STANDARD 2.6</span>
+        <h3>Technology integration</h3>
+        <p>When a tool such as GeoGebra or a spreadsheet is used because it allows students to see something they could not see otherwise, use it – don't use it simply to put pretty.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="evidence-section">
+    <span class="section-kicker">Evidence</span>
+    <h2>Seven standards, seven tools</h2>
+    <p class="intro">Filter by standard, or scroll through all seven. Click a tool to open it, and try the interactive piece inside, these aren&rsquo;t mockups.</p>
+
+    <div class="filter-bar" id="filterBar">
+      <span class="filter-chip active" data-filter="all">All standards</span>
+      <span class="filter-chip" data-filter="std-1">1 &middot; Know students</span>
+      <span class="filter-chip" data-filter="std-2">2 &middot; Know content</span>
+      <span class="filter-chip" data-filter="std-3">3 &middot; Plan &amp; implement</span>
+      <span class="filter-chip" data-filter="std-4">4 &middot; Environments</span>
+      <span class="filter-chip" data-filter="std-5">5 &middot; Assess &amp; report</span>
+      <span class="filter-chip" data-filter="std-6">6 &middot; Prof. learning</span>
+      <span class="filter-chip" data-filter="std-7">7 &middot; Engage</span>
+    </div>
+    <p class="filter-hint" id="filterHint">Showing all 7 standards.</p>
+
+    <!-- STANDARD 1 -->
+    <div class="std-block" id="standard-1" data-stdgroup="std-1" data-accent="teal">
+      <div class="std-watermark">1</div>
+      <div class="std-header"><span class="std-num-chip">STANDARD 1</span><h2>Know students and how they learn</h2></div>
+      <p class="std-focus">Focus areas: 1.3 (diverse linguistic, cultural and socio-economic backgrounds), 1.5 (differentiate teaching to meet specific learning needs).</p>
+
+      <div class="studio">
+        <div class="studio-band"></div>
+        <div class="studio-head" onclick="toggleStudio(this)">
+          <div>
+            <div class="studio-name">The Word Wall</div>
+            <div class="studio-tagline">Vocabulary Supports for a Year 7 EAL/D classroom</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="studio-body">
+          <div class="studio-inner">
+            <div class="std-tags"><span class="std-pill">1.3</span><span class="std-pill">1.5</span></div>
+            <p>Designed for a Year 7 class with a large proportion of students learning both maths and English. It was not a problem with the mathematics, it was a problem with the words "factor", "multiple", and "product". Below the way a student would on the wall poster in my room, click on a term.</p>
+
+            <div class="widget">
+              <div class="widget-label">Try it &middot; click any card to flip</div>
+              <div id="wordwall-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;"></div>
+            </div>
+
+            <h4>Why it sits under 1.3 and 1.5</h4>
+            <p>Each term on this wall was not a glossary term, but actually an actual term a student used incorrectly! Because that is not just a worksheet, but <span class="inline-std">1.3</span> evidence: it's developed around the language contexts that are present in the room. It is <span class="inline-std">1.5</span> evidence because if students did not need it they could not pay attention to it, if they did need it, they could lean on it without being singled out.</p>
+            <h4>What the research says</h4>
+            <p>Mathematics has technical language which does not easily transfer across to the language of everyday conversation and a recent review identified that students who are struggling with mathematics specifically were better served by teaching technical vocabulary explicitly than to learn through incidental exposure (Stevens et al., 2025).</p>
+            <h4>Looking back</h4>
+            <p>It changed my behaviour regarding language. The idea of colour coding terms on the board garnered more hands up than I would have anticipated. As I enter into Stage 6 standard, and the language load does not go away, I am carrying it forward.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARD 2 -->
+    <div class="std-block" id="standard-2" data-stdgroup="std-2" data-accent="pine">
+      <div class="std-watermark">2</div>
+      <div class="std-header"><span class="std-num-chip">STANDARD 2</span><h2>Know the content and how to teach it</h2></div>
+      <p class="std-focus">Focus areas: 2.1 (content and teaching strategies), 2.6 (information and communication technology).</p>
+
+      <div class="studio">
+        <div class="studio-band"></div>
+        <div class="studio-head" onclick="toggleStudio(this)">
+          <div>
+            <div class="studio-name">Logarithm Lab</div>
+            <div class="studio-tagline">A Stage 6 bridge from index laws to logs, built on GeoGebra-style visualisation</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="studio-body">
+          <div class="studio-inner">
+            <div class="std-tags"><span class="std-pill">2.1</span><span class="std-pill">2.6</span></div>
+            <p>Here is the lesson I created as I transitioned an index laws sequence from Stage 5 to Stage 6 Mathematics Advanced. The most difficult concept for students to grasp is that the use of a logarithm is not a new operation, it is simply asking the question, “what power do I need?” but in reverse. Drag the slider below as I have students do it in the GeoGebra version.</p>
+
+            <div class="widget">
+              <div class="widget-label">Try it &middot; drag the base, watch both curves move</div>
+              <label for="logBase" class="mono" style="font-size:0.8rem;">Base a = <span id="logBaseVal">2</span></label>
+              <input type="range" id="logBase" min="1.2" max="4" step="0.1" value="2" style="width:100%;margin:8px 0 14px;">
+              <svg id="logGraph" viewBox="0 0 320 220" style="width:100%;max-width:420px;background:#fff;border:1px solid var(--line);border-radius:4px;"></svg>
+            </div>
+
+            <h4>Why it sits under 2.1 and 2.6</h4>
+            <p>The content knowledge here is the bridge itself, treating logs as something that grows out of index laws rather than a topic dropped on students cold. That's <span class="inline-std">2.1</span>. The slider is not just decoration – it's the only way I have discovered to get students to see the inverse relationship move – in practice not theory.
+            </p>
+            <h4>What the research says</h4>
+            <p>The results of this 2023 meta study (20 years of GeoGebra research) showed that students who were able to manipulate and compare representations with GeoGebra achieved significantly greater achievement gains compared to students who were not.</p>
+            <h4>Looking back</h4>
+            <p>Originally I used to teach index laws as a closed topic, complete and move on. When I created this, I realised that it wasn't really the new idea that was difficult, it was simply not being used as much as I thought it was.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="studio">
+        <div class="studio-band"></div>
+        <div class="studio-head" onclick="toggleStudio(this)">
+          <div>
+            <div class="studio-name">Dice Pool, Round Two</div>
+            <div class="studio-tagline">The concepts of probability and relative frequency extended to expected value in Stage 5.</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="studio-body">
+          <div class="studio-inner">
+            <div class="std-tags"><span class="std-pill">2.1</span></div>
+            <p>Rewriting the same die-rolling activity to ask for more work: what is the relative frequency of that event as an estimation of the probability; the law of large numbers and a first look at expected value. The entire interactive version of this one exists in Standard 5, with the formative assessment angle being more important.</p>
+            <h4>Why it sits under 2.1</h4>
+            <p>It's the same physical action, enhanced! The aim at Stage 5 was to get comfortable by collecting and reading data. The point about content knowledge is to go deeper into the topic without reinventing it, and that's what I'm asking about that same data at Stage 6.</p>
+            <h4>What the research says</h4>
+            <p>The fewer pieces of new information students must retain the first time they attempt an activity they have seen in the model, the more likely they are to succeed (Chen et al., 2021).</p>
+            <h4>Looking back</h4>
+            <p>In Stage 5, some of the students did 100% success in this and still could not explain why their results were not the same as the theoretical value. The Stage 6 version doesn't let that comparison pass without being made.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARD 3 -->
+    <div class="std-block" id="standard-3" data-stdgroup="std-3" data-accent="gold">
+      <div class="std-watermark">3</div>
+      <div class="std-header"><span class="std-num-chip">STANDARD 3</span><h2>Plan for and implement effective teaching and learning</h2></div>
+      <p class="std-focus">Focus areas: 3.3 (use teaching strategies), 3.4 (select and use resources).</p>
+
+      <div class="studio">
+        <div class="studio-band"></div>
+        <div class="studio-head" onclick="toggleStudio(this)">
+          <div>
+            <div class="studio-name">Interest Calculator</div>
+            <div class="studio-tagline">Compound interest, hand-calculated first, then modelled</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="studio-body">
+          <div class="studio-inner">
+            <div class="std-tags"><span class="std-pill">3.3</span><span class="std-pill">3.4</span></div>
+            <p>A stage 6, standard 2 unit of work about compound interest, based on a real-life scenario – saving money for a car. Students model it on their own for a few periods, then they transition to this spreadsheet model. Replace the numbers below with those a student will use.</p>
+
+            <div class="widget">
+              <div class="widget-label">Try it &middot; change principal, rate, or years</div>
+              <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;">
+                <label class="mono" style="font-size:0.78rem;">Principal ($)<br><input type="number" id="ci-principal" value="2000" min="0" style="width:110px;padding:5px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--line);border-radius:3px;"></label>
+                <label class="mono" style="font-size:0.78rem;">Rate (% p.a.)<br><input type="number" id="ci-rate" value="5" min="0" step="0.1" style="width:90px;padding:5px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--line);border-radius:3px;"></label>
+                <label class="mono" style="font-size:0.78rem;">Years<br><input type="number" id="ci-years" value="5" min="1" max="15" style="width:70px;padding:5px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--line);border-radius:3px;"></label>
+              </div>
+              <table id="ci-table" class="mono" style="width:100%;border-collapse:collapse;font-size:0.82rem;"></table>
+            </div>
+
+            <h4>Why it sits under 3.3 and 3.4</h4>
+            <p>On purpose, I get students to do manual calculations before using the model, and that's only when they know what it's automating. The teaching strategy is that ordering, <span class="inline-std">3.3</span>. The decision not to use a generic formula sheet was a resourcing decision to allow students to see growth over years, so it is <span class="inline-std">3.4</span>.</p>
+            <h4>What the research says</h4>
+            <p>A random experiment on secondary students demonstrated that financial education that is based on real scenarios and not abstract formulas can lead to measurable improvements in financial knowledge and confidence (Zhu et al., 2021).</p>
+            <h4>Looking back</h4>
+            <p>The only lesson here that I had to build from scratch was this one (no Stage 4 or 5 version to work with) I have stuck with the worked example table as it really has supported pupils' working all year.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARD 4 -->
+    <div class="std-block" id="standard-4" data-stdgroup="std-4" data-accent="rust">
+      <div class="std-watermark">4</div>
+      <div class="std-header"><span class="std-num-chip">STANDARD 4</span><h2>Create and maintain supportive and safe learning environments</h2></div>
+      <p class="std-focus">Focus areas: 4.1 (support student participation), 4.3 (manage challenging behaviour).</p>
+
+      <div class="studio">
+        <div class="studio-band"></div>
+        <div class="studio-head" onclick="toggleStudio(this)">
+          <div>
+            <div class="studio-name">Pace Check</div>
+            <div class="studio-tagline">What I changed after watching students check out mid-lesson</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="studio-body">
+          <div class="studio-inner">
+            <div class="std-tags"><span class="std-pill">4.1</span><span class="std-pill">4.3</span></div>
+            <p>It's a reflection I wrote for my mentor after a series of Year 8 Numeracy probability lessons with 2 problems that would continually arise: Students checking out during longer explanations and I leaning on slides. Click the arrows below to view the actual pacing change.</p>
+
+            <div class="widget">
+              <div class="widget-label">Try it &middot; toggle before and after</div>
+              <div style="display:flex;gap:8px;margin-bottom:14px;">
+                <button id="pace-before-btn" class="mono" onclick="setPace('before')" style="padding:7px 16px;border-radius:100px;border:1.5px solid var(--rust);background:var(--rust);color:#fff;cursor:pointer;font-size:0.78rem;">Before</button>
+                <button id="pace-after-btn" class="mono" onclick="setPace('after')" style="padding:7px 16px;border-radius:100px;border:1.5px solid var(--rust);background:#fff;color:var(--rust);cursor:pointer;font-size:0.78rem;">After</button>
+              </div>
+              <div id="pace-bar-wrap" style="display:flex;height:34px;border-radius:4px;overflow:hidden;border:1px solid var(--line);"></div>
+              <p style="font-size:0.78rem;color:var(--grey);margin:10px 0 0;" id="pace-caption">A single 14-minute explanation block, followed by independent practice.</p>
+            </div>
+
+            <h4>Why it sits under 4.1 and 4.3</h4>
+            <p>It's <span class="inline-std">4.1</span> because I did specific adjustments to make it so that more students were doing something in the lesson, rather than just listening. <span class="inline-std">4.3</span> because the routines, consistent consequences, addressing lateness privately, a 90 second limit on individual help were not done on the hoof but were planned and applied in the same manner each time.</p>
+            <h4>What the research says</h4>
+            <p>The duration and continuity of the explanation load can impact the success of an explanation (Chen et al., 2021).</p>
+            <h4>Looking back</h4>
+            <p>This was the first time I took responsibility for a problem in the room, not the class being distracted. Following this lesson, each Stage 6 lesson in this portfolio will be shorter and more frequent due to this lesson.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARD 5 -->
+    <div class="std-block" id="standard-5" data-stdgroup="std-5" data-accent="gold">
+      <div class="std-watermark">5</div>
+      <div class="std-header"><span class="std-num-chip">STANDARD 5</span><h2>Assess, provide feedback and report on student learning</h2></div>
+      <p class="std-focus">Focus areas: 5.1 (assess student learning), 5.2 (provide feedback to students on their learning).</p>
+
+      <div class="studio">
+        <div class="studio-band"></div>
+        <div class="studio-head" onclick="toggleStudio(this)">
+          <div>
+            <div class="studio-name">Dice Pool</div>
+            <div class="studio-tagline">The pooled-data check from the Standard 2 probability lesson</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="studio-body">
+          <div class="studio-inner">
+            <div class="std-tags"><span class="std-pill">5.1</span><span class="std-pill">5.2</span></div>
+            <p>The same probability lesson as standard 2, but the formative check is that students share their results from the die roll as a class and compare them to theoretical probability and explain why they are different. Roll several times below the class as they do.</p>
+
+            <div class="widget">
+              <div class="widget-label">Try it &middot; roll and watch the gap close</div>
+              <button class="mono" onclick="rollDice()" style="padding:8px 18px;border-radius:100px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;cursor:pointer;font-size:0.8rem;">Roll 10 dice</button>
+              <span class="mono" style="font-size:0.78rem;color:var(--grey);margin-left:10px;">Total rolls: <span id="dice-total">0</span></span>
+              <div id="dice-bars" style="display:flex;gap:8px;align-items:flex-end;height:120px;margin-top:16px;"></div>
+              <p style="font-size:0.78rem;color:var(--grey);margin-top:8px;">Theoretical probability for each face: 1/6 &asymp; 16.7%. Watch the bars converge as the roll count grows.</p>
+            </div>
+
+            <h4>Why it sits under 5.1 and 5.2</h4>
+            <p><span class="inline-std">5.1</span> because I can do it live and I can tell, on the spot, which students have an understanding of the difference between experimental and theoretical probability. <span class="inline-std">5.2</span> – Feedback is a written explanation that is not evaluated at the end of the lesson.</p>
+            <h4>What the research says</h4>
+            <p>A study in 2023 specifically examining mathematics classrooms reported that formative assessment had a positive effect on achievement, ranging from an approximate effect size of 0.25 to 0.38 based on various implementation of formative assessment.</p>
+            <h4>Looking back</h4>
+            <p>This convinced me formative assessment could not be a homework quiz tacked onto the end of a lesson, but should be integrated into the lesson.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARD 6 -->
+    <div class="std-block" id="standard-6" data-stdgroup="std-6" data-accent="plum">
+      <div class="std-watermark">6</div>
+      <div class="std-header"><span class="std-num-chip">STANDARD 6</span><h2>Engage in professional learning</h2></div>
+      <p class="std-focus">Focus areas: 6.1 (identify and plan professional learning needs), 6.3 (engage with colleagues and improve practice).</p>
+
+      <div class="studio">
+        <div class="studio-band"></div>
+        <div class="studio-head" onclick="toggleStudio(this)">
+          <div>
+            <div class="studio-name">Watch &amp; Note</div>
+            <div class="studio-tagline">Two observation journals, Pythagoras and algebra</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="studio-body">
+          <div class="studio-inner">
+            <div class="std-tags"><span class="std-pill">6.1</span><span class="std-pill">6.3</span></div>
+            <p>Observations made from two Year 9 lessons of other teachers. Click on either of the entries to read the actual text in which I wrote it.</p>
+
+            <div class="widget">
+              <div class="widget-label">Try it &middot; click an entry</div>
+              <div id="journal-list"></div>
+            </div>
+
+            <h4>Why it sits under 6.1 and 6.3</h4>
+            <p><span class="inline-std">6.1</span> because the only thing that is useful when you watch someone else teach is if you leave with a clear understanding of what gaps you are aware of. <span class="inline-std">6.3</span> not because the purpose was to be awestruck with the lesson, but because the purpose was to take something tangible and put it to use later and that's exactly what was accomplished.</p>
+            <h4>What the research says</h4>
+            <p>Recent professional development research has identified the link between a specific student response and a specific teaching decision as one of the areas in which pre-service teachers are in need of support to enhance their practice (Lynch et al., 2025).</p>
+            <h4>Looking back</h4>
+            <p>The one lesson that remains intact is the Pythagoras lesson. The teacher did the proof with the squares on each side, and then went on to the formula; this is the order that I followed in the Logarithm Lab.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARD 7 -->
+    <div class="std-block" id="standard-7" data-stdgroup="std-7" data-accent="plum">
+      <div class="std-watermark">7</div>
+      <div class="std-header"><span class="std-num-chip">STANDARD 7</span><h2>Engage professionally with colleagues, parents/carers and the community</h2></div>
+      <p class="std-focus">Focus areas: 7.1 (meet professional ethics and responsibilities), 7.3 (engage with parents/carers).</p>
+
+      <div class="studio">
+        <div class="studio-band"></div>
+        <div class="studio-head" onclick="toggleStudio(this)">
+          <div>
+            <div class="studio-name">Mentor Log</div>
+            <div class="studio-tagline">Feedback conversations across the placement</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="studio-body">
+          <div class="studio-inner">
+            <div class="std-tags"><span class="std-pill">7.1</span><span class="std-pill">7.3</span></div>
+            <p>Across the placement I kept up regular conversations with my mentor teacher, debriefs after lessons she watched and lessons I taught, finishing with a short, plainly written Summary Statement.</p>
+
+            <div class="widget">
+              <div class="widget-label">Timeline</div>
+              <div id="mentor-timeline" style="border-left:2px solid var(--plum);padding-left:18px;"></div>
+            </div>
+
+            <h4>Why it sits under 7.1 and 7.3</h4>
+            <p><span class="inline-std">7.1</span> That in practice, working with a supervisor is about being open about your own issues, and that's what professional behaviour is all about. <span class="inline-std">7.3</span> students: I had the same kind of relationship with my mentor that I will have with parents and carers later and it is a respectful, two way relationship.</p>
+            <h4>What the research says</h4>
+            <p>When pre-service teachers are actively seeking out specific feedback (not being observed), rather than receiving it as part of a routine, they have been shown to lead to greater enhancements in practice, particularly if the feedback is delivered continuously (Lynch et al., 2025).</p>
+            <h4>Looking back</h4>
+            <p>If I would have glossed over it, I would not have gotten feedback from my mentor about classroom management being difficult for me. That's the habit I want to continue to have when no one is asking me to debrief.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section" id="reflection">
+    <span class="section-kicker">Self-reflection</span>
+    <h2>What this portfolio taught me</h2>
+
+    <div class="goal-card" data-accent="teal" style="margin-bottom:14px;">
+      <span class="goal-tag">WHAT STUCK WITH ME</span>
+      <p style="font-size:0.94rem;">It's actually building Logarithm Lab that has made me think about Stage 5 content. This was something I used to think of as a chapter that I could close and forget about. I had to make it into a Stage 6 lesson about logs once and then I understood that it was the base for the entire topic.
+      </p>
+    </div>
+    <div class="goal-card" data-accent="rust" style="margin-bottom:14px;">
+      <span class="goal-tag">WHERE I GOT STUCK</span>
+      <p style="font-size:0.94rem;">Pace Check is essentially me saying I talked too much. I would have my students carefully explain, and then 1/2 of the class would be gone two minutes later. If that was to happen, I would have to cut my explanations short, and trust the students to handle it without me as much as I was used to giving them.</p>
+    </div>
+    <div class="goal-card" data-accent="pine" style="margin-bottom:14px;">
+      <span class="goal-tag">WHERE I&rsquo;VE ACTUALLY IMPROVED</span>
+      <p style="font-size:0.94rem;">You can see how I plan sequences now instead of single lessons, particularly in how Logarithm Lab and Watch & Note both go from something concrete to something abstract purposely. I used to avoid using GeoGebra and spreadsheets and made myself look cool and now I use them because students could see something in there which they could not otherwise.</p>
+    </div>
+    <div class="goal-card" data-accent="gold">
+      <span class="goal-tag">WHAT&rsquo;S NEXT</span>
+      <p style="font-size:0.94rem;">The obvious gap is calculus and I haven't done anything in that area and feel the least comfortable on in Stage 6 Advanced I, so I would like to make sure that that is solidified. I wish more of these sorts of checks like Dice Pool, which did the job for me and I've not experienced one since. I want to write Pace Check more often than when it fails badly enough to warrant it, as this is the one I really wish I did more.</p>
+    </div>
+  </section>
+
+  <section class="section" id="references">
+    <!-- <span class="section-kicker">References</span> -->
+    <h2>References</h2>
+    <!-- <p class="intro">All sources below are drawn from research published in 2020 or later.</p> -->
+    <div class="ref-list">
+      <p style="font-size:0.9rem;">Chen, O., Woolcott, G., &amp; Kalyuga, S. (2021). Comparing alternative sequences of examples and problem-solving tasks: the case of conceptual knowledge. <em>British Journal of Educational Psychology, 90</em>, 210&ndash;223.</p>
+      <p style="font-size:0.9rem;">Lynch, K., Gonzalez, K., Hill, H., &amp; Merritt, R. (2025). A meta-analysis of the experimental evidence linking mathematics and science professional development interventions to teacher knowledge, classroom instruction, and student achievement. <em>Review of Educational Research.</em></p>
+      <p style="font-size:0.9rem;">NSW Education Standards Authority. (2018). <em>Australian Professional Standards for Teachers.</em> NESA.</p>
+      <p style="font-size:0.9rem;">Stevens, E. A., Tanner, E., &amp; Mowbray, M. H. (2025). A systematic review of mathematics vocabulary interventions for students with or at-risk for mathematics difficulty. <em>Remedial and Special Education.</em></p>
+      <p style="font-size:0.9rem;">Boström, E., & Palm, T. (2023, March). The effect of a formative assessment practice on student achievement in mathematics. <em>In Frontiers in Education (Vol. 8, p. 1101192). <em>Frontiers Media SA.</em></p>
+      <p style="font-size:0.9rem;">Zhang, et al. (2023). Dynamic visualization by GeoGebra for mathematics learning: a meta-analysis of 20 years of research. <em>Education and Information Technologies.</em></p>
+      <p style="font-size:0.9rem;">Zhu, A. Y. F., Yu, C. W. M., &amp; Chou, K. L. (2021). Improving financial literacy in secondary school students: an randomized experiment. <em>Youth &amp; Society, 53</em>(4), 539&ndash;562.</p>
+    </div>
+  </section>
+
+  <footer style="padding:32px 0;font-size:0.8rem;color:var(--grey);">
+    Dipanker Shaha &middot; Professional E-Portfolio &middot; CRS514 Curriculum Studies &ndash; Mathematics: Part B &middot; Master of Teaching (Secondary)
+  </footer>
+
+</div>
+
+<script>
+/* ---------- Studio expand/collapse ---------- */
+function toggleStudio(headEl){
+  var studio = headEl.closest('.studio');
+  studio.classList.toggle('open');
+}
+
+/* ---------- Scroll spine + nav active state ---------- */
+document.addEventListener('DOMContentLoaded', function(){
+  var spine = document.getElementById('spine');
+  function updateSpine(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    spine.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateSpine, {passive:true});
+  updateSpine();
+
+  var tabs = document.querySelectorAll('.tab');
+  var sections = [];
+  tabs.forEach(function(tab){
+    var el = document.getElementById(tab.getAttribute('data-target'));
+    if(el){ sections.push({el:el, tab:tab}); }
+    tab.addEventListener('click', function(){ if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); } });
+  });
+  function updateActiveTab(){
+    var scrollPos = window.scrollY + 100;
+    var current = sections[0];
+    sections.forEach(function(s){ if(s.el.offsetTop <= scrollPos){ current = s; } });
+    tabs.forEach(function(t){ t.classList.remove('active'); });
+    if(current){ current.tab.classList.add('active'); }
+  }
+  window.addEventListener('scroll', updateActiveTab, {passive:true});
+  updateActiveTab();
+
+  var chips = document.querySelectorAll('.filter-chip');
+  var stdBlocks = document.querySelectorAll('.std-block');
+  var hint = document.getElementById('filterHint');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var filter = chip.getAttribute('data-filter');
+      if(filter === 'all'){
+        stdBlocks.forEach(function(b){ b.style.display = ''; });
+        hint.textContent = 'Showing all 7 standards.';
+      } else {
+        stdBlocks.forEach(function(b){ b.style.display = (b.getAttribute('data-stdgroup') === filter) ? '' : 'none'; });
+        hint.textContent = 'Showing 1 standard. Choose "All standards" to see the rest.';
+      }
+    });
+  });
+
+  initWordWall();
+  initLogGraph();
+  initInterestCalc();
+  initPaceCheck();
+  initDicePool();
+  initJournal();
+  initMentorLog();
+});
+
+/* ---------- Standard 1: Word Wall flip cards ---------- */
+function initWordWall(){
+  var terms = [
+    {term:"Factor", def:"A number that divides exactly into another number."},
+    {term:"Multiple", def:"What you get when you multiply a number by a whole number."},
+    {term:"Prime", def:"A number with exactly two factors: 1 and itself."},
+    {term:"Product", def:"The answer when you multiply numbers together."},
+    {term:"Index", def:"The small raised number showing how many times to multiply."},
+    {term:"Composite", def:"A number with more than two factors."}
+  ];
+  var grid = document.getElementById('wordwall-grid');
+  if(!grid) return;
+  terms.forEach(function(t){
+    var card = document.createElement('div');
+    card.style.cssText = "background:var(--teal-light);border:1px solid var(--teal);border-radius:4px;padding:14px 10px;text-align:center;cursor:pointer;min-height:64px;display:flex;align-items:center;justify-content:center;font-size:0.86rem;transition:background .15s;";
+    card.textContent = t.term;
+    card.dataset.flipped = "false";
+    card.addEventListener('click', function(){
+      if(card.dataset.flipped === "false"){
+        card.textContent = t.def;
+        card.style.background = "#fff";
+        card.style.fontSize = "0.76rem";
+        card.dataset.flipped = "true";
+      } else {
+        card.textContent = t.term;
+        card.style.background = "var(--teal-light)";
+        card.style.fontSize = "0.86rem";
+        card.dataset.flipped = "false";
+      }
+    });
+    grid.appendChild(card);
+  });
+}
+
+/* ---------- Standard 2: Logarithm Lab live graph ---------- */
+function initLogGraph(){
+  var slider = document.getElementById('logBase');
+  var valLabel = document.getElementById('logBaseVal');
+  var svg = document.getElementById('logGraph');
+  if(!slider || !svg) return;
+
+  function draw(){
+    var a = parseFloat(slider.value);
+    valLabel.textContent = a.toFixed(1);
+    var W = 320, H = 220, ox = 60, oy = 190, scale = 28;
+    var parts = [];
+    parts.push('<line x1="'+ox+'" y1="10" x2="'+ox+'" y2="'+oy+'" stroke="#ccc"/>');
+    parts.push('<line x1="'+ox+'" y1="'+oy+'" x2="300" y2="'+oy+'" stroke="#ccc"/>');
+    // y = a^x  for x in [-2, 2.2]
+    var expPts = [];
+    for(var i=-40;i<=44;i++){
+      var x = i/20;
+      var y = Math.pow(a, x);
+      if(y > 8) continue;
+      var px = ox + x*scale;
+      var py = oy - y*scale;
+      if(px < 0 || px > W) continue;
+      expPts.push(px.toFixed(1)+','+py.toFixed(1));
+    }
+    parts.push('<polyline points="'+expPts.join(' ')+'" fill="none" stroke="#2B5F4C" stroke-width="2.5"/>');
+    // y = log_a(x) for x in (0, 8]
+    var logPts = [];
+    for(var j=1;j<=160;j++){
+      var xx = j/20;
+      var yy = Math.log(xx)/Math.log(a);
+      if(yy < -2 || yy > 2.4) continue;
+      var px2 = ox + xx*scale;
+      var py2 = oy - yy*scale;
+      if(px2 < 0 || px2 > W) continue;
+      logPts.push(px2.toFixed(1)+','+py2.toFixed(1));
+    }
+    parts.push('<polyline points="'+logPts.join(' ')+'" fill="none" stroke="#B8472E" stroke-width="2.5"/>');
+    parts.push('<line x1="'+ox+'" y1="'+oy+'" x2="'+(ox+scale*2)+'" y2="'+(oy-scale*2)+'" stroke="#ddd" stroke-dasharray="3,3"/>');
+    parts.push('<text x="270" y="'+(oy-Math.pow(a,1.8)*scale > 14 ? oy-Math.pow(a,1.8)*scale : 14)+'" font-size="11" fill="#2B5F4C" font-family="IBM Plex Mono, monospace">y=a^x</text>');
+    parts.push('<text x="270" y="'+(oy - (Math.log(8)/Math.log(a))*scale)+'" font-size="11" fill="#B8472E" font-family="IBM Plex Mono, monospace">y=log_a(x)</text>');
+    svg.innerHTML = parts.join('');
+  }
+  slider.addEventListener('input', draw);
+  draw();
+}
+
+/* ---------- Standard 3: Interest Calculator ---------- */
+function initInterestCalc(){
+  var p = document.getElementById('ci-principal');
+  var r = document.getElementById('ci-rate');
+  var y = document.getElementById('ci-years');
+  var table = document.getElementById('ci-table');
+  if(!p || !table) return;
+
+  function render(){
+    var principal = parseFloat(p.value) || 0;
+    var rate = (parseFloat(r.value) || 0) / 100;
+    var years = Math.min(Math.max(parseInt(y.value) || 1, 1), 15);
+    var rows = ['<tr style="background:var(--gold-light);"><th style="padding:6px 10px;text-align:left;">Year</th><th style="padding:6px 10px;text-align:right;">Balance</th><th style="padding:6px 10px;text-align:right;">Interest earned</th></tr>'];
+    var balance = principal;
+    for(var i=1;i<=years;i++){
+      var interest = balance * rate;
+      balance += interest;
+      rows.push('<tr style="border-bottom:1px solid var(--line);"><td style="padding:5px 10px;">'+i+'</td><td style="padding:5px 10px;text-align:right;">$'+balance.toFixed(2)+'</td><td style="padding:5px 10px;text-align:right;color:var(--gold);">+$'+interest.toFixed(2)+'</td></tr>');
+    }
+    table.innerHTML = rows.join('');
+  }
+  [p,r,y].forEach(function(el){ el.addEventListener('input', render); });
+  render();
+}
+
+/* ---------- Standard 4: Pace Check toggle ---------- */
+function setPace(mode){
+  var wrap = document.getElementById('pace-bar-wrap');
+  var caption = document.getElementById('pace-caption');
+  var beforeBtn = document.getElementById('pace-before-btn');
+  var afterBtn = document.getElementById('pace-after-btn');
+  var segments;
+  if(mode === 'before'){
+    segments = [{w:14,c:'#B8472E',l:'Explain'},{w:6,c:'#DAD3C2',l:'Practice'}];
+    caption.textContent = 'A single 14-minute explanation block, followed by 6 minutes of independent practice.';
+    beforeBtn.style.background = '#B8472E'; beforeBtn.style.color = '#fff';
+    afterBtn.style.background = '#fff'; afterBtn.style.color = '#B8472E';
+  } else {
+    segments = [{w:4,c:'#B8472E',l:'Explain'},{w:3,c:'#DAD3C2',l:'Try'},{w:3,c:'#B8472E',l:'Explain'},{w:3,c:'#DAD3C2',l:'Try'},{w:3,c:'#B8472E',l:'Explain'},{w:4,c:'#DAD3C2',l:'Try'}];
+    caption.textContent = 'Six short blocks alternating two to four minutes of explanation with practice, rather than one long stretch.';
+    afterBtn.style.background = '#B8472E'; afterBtn.style.color = '#fff';
+    beforeBtn.style.background = '#fff'; beforeBtn.style.color = '#B8472E';
+  }
+  wrap.innerHTML = segments.map(function(s){
+    return '<div style="flex:'+s.w+';background:'+s.c+';display:flex;align-items:center;justify-content:center;color:'+(s.c==='#B8472E'?'#fff':'#4A4640')+';font-size:0.68rem;font-family:IBM Plex Mono, monospace;">'+s.l+'</div>';
+  }).join('');
+}
+
+function initPaceCheck(){
+  if(document.getElementById('pace-bar-wrap')){ setPace('before'); }
+}
+
+/* ---------- Standard 5: Dice Pool simulator ---------- */
+var diceCounts = [0,0,0,0,0,0];
+var diceTotalRolls = 0;
+function rollDice(){
+  for(var i=0;i<10;i++){
+    var face = Math.floor(Math.random()*6);
+    diceCounts[face]++;
+    diceTotalRolls++;
+  }
+  document.getElementById('dice-total').textContent = diceTotalRolls;
+  renderDiceBars();
+}
+function renderDiceBars(){
+  var container = document.getElementById('dice-bars');
+  if(!container) return;
+  var maxH = 100;
+  var html = '';
+  for(var f=0; f<6; f++){
+    var pct = diceTotalRolls > 0 ? (diceCounts[f]/diceTotalRolls) : 0;
+    var h = Math.max(pct*maxH, 2);
+    var pctLabel = (pct*100).toFixed(1)+'%';
+    html += '<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:120px;">' +
+      '<div class="mono" style="font-size:0.65rem;color:var(--grey);margin-bottom:3px;">'+pctLabel+'</div>' +
+      '<div style="width:100%;height:'+h+'px;background:var(--gold);border-radius:3px 3px 0 0;"></div>' +
+      '<div class="mono" style="font-size:0.7rem;margin-top:4px;">'+(f+1)+'</div>' +
+      '</div>';
+  }
+  container.innerHTML = html;
+}
+function initDicePool(){
+  renderDiceBars();
+}
+
+/* ---------- Standard 6: Journal entries ---------- */
+function initJournal(){
+  var list = document.getElementById('journal-list');
+  if(!list) return;
+  var entries = [
+    {title:"Pythagoras\u2019 theorem \u2014 Year 9", body:"The teacher built the proof from squares drawn on each side of a right triangle before writing a\u00b2+b\u00b2=c\u00b2 on the board. Students rearranged paper squares physically before the formula appeared. Engagement was visibly higher than in lessons that start with the formula. Question I keep coming back to: how much of this is the visual proof, and how much is just that they got to move pieces of paper around?"},
+    {title:"Introductory algebra \u2014 Year 9", body:"Teacher used a balance-scale analogy for solving simple equations, physically using a set of scales for the first ten minutes. Some students who struggled with abstract symbol manipulation could solve the same problem on the scale instantly. Worth noting: the analogy broke down once negative numbers were introduced, and the teacher didn\u2019t address that gap explicitly. I want to plan for where an analogy stops working, not just where it starts."}
+  ];
+  entries.forEach(function(e){
+    var item = document.createElement('div');
+    item.style.cssText = "border:1px solid var(--line);border-radius:4px;margin-bottom:8px;overflow:hidden;background:#fff;";
+    var head = document.createElement('div');
+    head.style.cssText = "padding:11px 15px;cursor:pointer;font-size:0.88rem;font-weight:500;display:flex;justify-content:space-between;align-items:center;";
+    head.innerHTML = '<span>'+e.title+'</span><span class="mono" style="font-size:0.7rem;color:var(--grey);">read \u2193</span>';
+    var body = document.createElement('div');
+    body.style.cssText = "max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:0.86rem;color:var(--ink-soft);";
+    var inner = document.createElement('div');
+    inner.style.cssText = "padding:0 15px 14px;";
+    inner.textContent = e.body;
+    body.appendChild(inner);
+    var open = false;
+    head.addEventListener('click', function(){
+      open = !open;
+      body.style.maxHeight = open ? body.scrollHeight + 'px' : '0px';
+    });
+    item.appendChild(head);
+    item.appendChild(body);
+    list.appendChild(item);
+  });
+}
+
+/* ---------- Standard 7: Mentor timeline ---------- */
+function initMentorLog(){
+  var el = document.getElementById('mentor-timeline');
+  if(!el) return;
+  var events = [
+    {week:"Week 1", note:"Initial debrief. Mentor flagged seating plan as priority before teaching unfamiliar classes."},
+    {week:"Week 3", note:"Raised classroom management as a personal weak spot directly, rather than waiting for it to come up."},
+    {week:"Week 6", note:"Mentor observed a marked improvement in consistency of consequences for off-task behaviour."},
+    {week:"Week 9", note:"Joint review of Summary Statement draft. Agreed on plain, specific language over generic praise."}
+  ];
+  el.innerHTML = events.map(function(ev){
+    return '<div style="margin-bottom:16px;position:relative;">' +
+      '<div style="position:absolute;left:-23px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--plum);"></div>' +
+      '<div class="mono" style="font-size:0.7rem;color:var(--plum);margin-bottom:2px;">'+ev.week+'</div>' +
+      '<div style="font-size:0.88rem;">'+ev.note+'</div>' +
+      '</div>';
+  }).join('');
+}
+</script>
+
+</body>
+</html>
